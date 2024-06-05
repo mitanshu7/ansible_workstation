@@ -11,5 +11,5 @@
     name:
       - "@Development Tools"
       - git
-    state: present
+    state: latest
   when: ansible_distribution == "Fedora"
