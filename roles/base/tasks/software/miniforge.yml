@@ -12,17 +12,17 @@
   ansible.builtin.shell: ~/miniforge3/bin/mamba init
   become_user: '{{ miniforge_user }}'
 
-- name: Create new Mamba environment (MNE)
-  ansible.builtin.shell: source ~/.bashrc && mamba create -n mne mne -y
-  become_user: '{{ miniforge_user }}'
+#- name: Create new Mamba environment (MNE)
+#  ansible.builtin.shell: source ~/.bashrc && mamba create -n mne mne -y
+#  become_user: '{{ miniforge_user }}'
 
-- name: Create new Mamba environment (Pytorch)
-  ansible.builtin.shell: source ~/.bashrc && mamba create -n pytorch python=3.10 -y
-  become_user: '{{ miniforge_user }}'
+#- name: Create new Mamba environment (Pytorch)
+#  ansible.builtin.shell: source ~/.bashrc && mamba create -n pytorch python=3.10 -y
+#  become_user: '{{ miniforge_user }}'
 
-- name: Instal Python packages (Pytorch)
-  ansible.builtin.shell: source ~/.bashrc && mamba install -n pytorch pytorch torchvision torchaudio pytorch-cuda=12.1 transformers sentence-transformers jupyterlab xformers -c xformers -c pytorch -c nvidia -y
-  become_user: '{{ miniforge_user }}'
+#- name: Instal Python packages (Pytorch)
+#  ansible.builtin.shell: source ~/.bashrc && mamba install -n pytorch pytorch torchvision torchaudio pytorch-cuda=12.1 transformers sentence-transformers jupyterlab xformers -c xformers -c pytorch -c nvidia -y
+#  become_user: '{{ miniforge_user }}'
 
 
 #- name: Create new Mamba environment (TEST)
