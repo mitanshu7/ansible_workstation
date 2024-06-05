@@ -1,0 +1,12 @@
+- name: Upgrade all packages to their latest version (Debian)
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Upgrade all packages to their latest version (Fedora)
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+  when: ansible_distribution == "Fedora"
+

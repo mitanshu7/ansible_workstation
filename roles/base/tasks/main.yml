@@ -1,11 +1,7 @@
-- name: Upgrade all packages to their latest version (Debian)
-  ansible.builtin.apt:
-    name: "*"
-    state: latest
-  when: ansible_distribution == "Debian"
+# Load distro-specific variables
+#- include_vars: "{{ ansible_distribution }}.yml"
+#  tags: always
 
-- name: Upgrade all packages to their latest version (Fedora)
-  ansible.builtin.dnf:
-    name: "*"
-    state: latest
-  when: ansible_distribution == "Fedora"
+- block:
+  # Upgrade all installed packages
+  - import_tasks: software/upgrade_packages.yml
