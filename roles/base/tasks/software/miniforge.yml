@@ -6,8 +6,8 @@
 
 - name: Run Miniforge installer (Debian and Fedora)
   ansible.builtin.shell: /tmp/Miniforge3-Linux-x86_64.sh -b -u
-  become_user: mitanshu
+  become_user: '{{ miniforge_user }}'
 
 - name: Run Conda init (Debian and Fedora)
   ansible.builtin.shell: ~/miniforge3/bin/conda init
-  become_user: mitanshu
+  become_user: '{{ miniforge_user }}'
