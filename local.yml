@@ -1,0 +1,52 @@
+# tasks to complete before running roles
+- hosts: all
+  tags: always
+  become: true
+  pre_tasks:
+    - name: Update package cache (Debian)
+      ansible.builtin.apt:
+        update_cache: true
+      changed_when: false
+      when: ansible_distribution == "Debian"
+
+    - name: Update package cache (Fedora)
+      ansible.builtin.dnf:
+        update_cache: true
+      changed_when: false
+      when: ansible_distribution == "Fedora"
+
+# run roles
+- hosts: all
+  tags: base
+  become: true
+  roles:
+    - base
+
+#- hosts: workstation
+#  tags: workstation
+#  become: true
+#  roles:
+#    - workstation
+
+# end of run cleanup and reporting
+- hosts: all
+  become: true
+  tasks:
+  - name: cleanup package cache (Debian)
+    tags: always
+    ansible.builtin.apt:
+      autoclean: yes
+    when: ansible_distribution == "Debian"
+
+  - name: autoremove orphan packages (Debian)
+    tags: always
+    ansible.builtin.apt:
+      autoremove: yes
+      purge: yes
+    when: ansible_distribution == "Debian"
+
+  - name: autoremove orphan packages (Fedora)
+    tags: always
+    ansible.builtin.dnf:
+      autoremove: yes
+    when: ansible_distribution == "Fedora"
