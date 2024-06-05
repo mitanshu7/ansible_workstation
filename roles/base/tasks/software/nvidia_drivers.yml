@@ -1,0 +1,19 @@
+- name: Enable non-free repositories (Debian)
+  lineinfile:
+    path: /etc/apt/sources.list
+    regexp: '^deb http://deb.debian.org/debian/ bookworm main'
+    line: 'deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware'
+    state: present
+  when: ansible_distribution == "Debian"
+  notify: apt_update
+
+- name: Install Nvidia Drivers (Debian)
+  ansible.builtin.apt:
+    name:
+      - nvidia-driver
+      - firmware-misc-nonfree
+    state: latest
+  when: ansible_distribution == "Debian"
+
+
+

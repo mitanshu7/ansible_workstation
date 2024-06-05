@@ -1,0 +1,15 @@
+- name: Install Development Tools (Debian)
+  ansible.builtin.apt:
+    name:
+      - build-essential
+      - git
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Install Development Tools (Fedora)
+  ansible.builtin.dnf:
+    name:
+      - "@Development Tools"
+      - git
+    state: present
+  when: ansible_distribution == "Fedora"
