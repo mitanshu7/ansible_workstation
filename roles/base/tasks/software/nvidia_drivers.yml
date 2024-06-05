@@ -25,8 +25,10 @@
     minutes: 5
   when: ansible_distribution == "Fedora"
 
-- name: Read from the updated kernel modules (Fedora)
-  ansible.builtin.command: sudo akmods --force && sudo dracut --force
+- name: Rebuild kernel modules (Fedora)
+  ansible.builtin.command: akmods --force
   when: ansible_distribution == "Fedora"
 
-
+- name: Rebuild the initramfs image (Fedora)
+  ansible.builtin.command: dracut --force
+  when: ansible_distribution == "Fedora"
