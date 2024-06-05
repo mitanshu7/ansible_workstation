@@ -8,6 +8,7 @@ install_ansible() {
     sudo apt install -y ansible
   elif [ "$(command -v dnf)" ]; then
     echo "Installing Ansible on Fedora/RedHat..."
+    sudo dnf update
     sudo dnf install -y ansible
   else
     echo "This script only supports Ubuntu/Debian and Fedora/RedHat based systems."
