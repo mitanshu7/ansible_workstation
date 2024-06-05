@@ -19,16 +19,17 @@
       - xorg-x11-drv-nvidia-cuda
     state: latest
   when: ansible_distribution == "Fedora"
+  register: nvidia_driver_fedora
 
 - name: Pause for 5 minutes for the kernel modules to load up (Fedora)
   ansible.builtin.pause:
     minutes: 5
-  when: ansible_distribution == "Fedora"
+  when: nvidia_driver_fedora.changed
 
 - name: Rebuild kernel modules (Fedora)
   ansible.builtin.command: akmods --force
-  when: ansible_distribution == "Fedora"
+  when: nvidia_driver_fedora.changed
 
 - name: Rebuild the initramfs image (Fedora)
   ansible.builtin.command: dracut --force
-  when: ansible_distribution == "Fedora"
+  when: nvidia_driver_fedora.changed
