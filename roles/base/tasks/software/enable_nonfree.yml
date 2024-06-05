@@ -1,8 +1,8 @@
 - name: Enable non-free repositories (Debian)
   lineinfile:
     path: /etc/apt/sources.list
-    regexp: '^deb http://deb.debian.org/debian/ bookworm main'
-    line: 'deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware'
+    regexp: '^deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} main'
+    line: 'deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} main contrib non-free non-free-firmware'
     state: present
   when: ansible_distribution == "Debian"
   notify: apt_update

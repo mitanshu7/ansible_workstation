@@ -20,3 +20,13 @@
     state: latest
   when: ansible_distribution == "Fedora"
 
+- name: Pause for 5 minutes for the kernel modules to load up (Fedora)
+  ansible.builtin.pause:
+    minutes: 5
+  when: ansible_distribution == "Fedora"
+
+- name: Read from the updated kernel modules (Fedora)
+  ansible.builtin.command: sudo akmods --force && sudo dracut --force
+  when: ansible_distribution == "Fedora"
+
+
