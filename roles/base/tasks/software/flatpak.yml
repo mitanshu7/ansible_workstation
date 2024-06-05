@@ -1,0 +1,14 @@
+- name: Install Flatpak (Debian)
+  ansible.builtin.apt:
+    name: flatpak
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Install Flatpak (Fedora)
+  ansible.builtin.dnf:
+    name: flatpak
+    state: latest
+  when: ansible_distribution == "Fedora"
+
+- name: Enable Flatpak Repo (Debian and Fedora)
+  ansible.builtin.command: flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
