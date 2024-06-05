@@ -5,4 +5,38 @@
     line: 'deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} main contrib non-free non-free-firmware'
     state: present
   when: ansible_distribution == "Debian"
-  notify: apt_update
+  register: debian_repo_change
+
+- name: Update cache (if repository changed) (Debian)
+  ansible.builtin.apt:
+    update_cache: true
+  when: debian_repo_change.changed
+
+- name: Importing (free) key (Fedora)
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+
+- name: Importing (non-free) key (Fedora)
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+
+- name: Enable free repositories (Fedora)
+  ansible.builtin.dnf:
+    name: 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm'
+    state: present
+  when: ansible_distribution == "Fedora"
+  register: fedora_free_repo_change
+
+- name: Enable non-free repositories (Fedora)
+  ansible.builtin.dnf:
+    name: 'https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm'
+    state: present
+  when: ansible_distribution == "Fedora"
+  register: fedora_non_free_repo_change
+
+- name: Update cache (if repository changed) (Fedora)
+  ansible.builtin.dnf:
+    update_cache: true
+  when: fedora_free_repo_change.changed or fedora_non_free_repo_change.changed
