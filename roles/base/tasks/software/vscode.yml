@@ -1,0 +1,38 @@
+- name: Download Visual Studio Code .deb package (Debian)
+  ansible.builtin.get_url:
+    url: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+    dest: /tmp/vscode.deb
+    mode: '0755'
+  when: ansible_distribution == "Debian"
+
+- name: Install vscode.deb (Debian)
+  ansible.builtin.apt:
+    name: vscode.deb
+    deb: /tmp/vscode.deb
+    state: present
+  when: ansible_distribution == "Debian"
+
+- name: Import Microsoft repository key (Fedora)
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
+  when: ansible_distribution == "Fedora"
+
+- name: Add Microsoft Visual Studio Code repository (Fedora)
+  ansible.builtin.copy:
+    content: |-
+      [code]
+      name=Visual Studio Code
+      baseurl=https://packages.microsoft.com/yumrepos/vscode
+      enabled=1
+      gpgcheck=1
+      gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+    dest: /etc/yum.repos.d/vscode.repo
+    mode: 0644
+  when: ansible_distribution == "Fedora"
+
+- name: Install Visual Studio Code (Fedora)
+  ansible.builtin.dnf:
+    name: code
+  when: ansible_distribution == "Fedora"
+
