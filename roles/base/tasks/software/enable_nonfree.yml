@@ -7,36 +7,18 @@
   when: ansible_distribution == "Debian"
   notify: apt_update
 
-- name: Install Nvidia Drivers (Debian)
-  ansible.builtin.apt:
-    name:
-      - nvidia-driver
-      - firmware-misc-nonfree
-    state: latest
-  when: ansible_distribution == "Debian"
-
-- name: Enable non-free repositories (Fedora)
+- name: Enable free repositories (Fedora)
   yum_repository:
     name: rpmfusion-free
+    description: rpmfusion-free
     baseurl: 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm'
-    state: present
-  yum_repository:
-    name: rpmfusion-nonfree
-    baseurl: 'https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm'
     state: present
   notify: dnf_update
 
-- name: Install Nvidia Drivers (Fedora)
-  ansible.builtin.dnf:
-    name:
-      - gcc
-      - kernel-headers
-      - kernel-devel
-      - akmod-nvidia
-      - xorg-x11-drv-nvidia
-      - xorg-x11-drv-nvidia-libs
-      - xorg-x11-drv-nvidia-libs.i686
-      - 
-    state: latest
-  when: ansible_distribution == "Fedora"
-
+- name: Enable non-free repositories (Fedora)
+  yum_repository:
+    name: rpmfusion-nonfree
+    description: rpmfusion-nonfree
+    baseurl: 'https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm'
+    state: present
+  notify: dnf_update

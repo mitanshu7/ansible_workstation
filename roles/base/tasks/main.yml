@@ -4,6 +4,7 @@
 
 - block:
   # Upgrade all installed packages
+  - import_tasks: software/enable_nonfree.yml
   - import_tasks: software/upgrade_packages.yml
   - import_tasks: software/development_packages.yml
   - import_tasks: software/nvidia_drivers.yml
