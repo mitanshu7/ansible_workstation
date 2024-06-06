@@ -8,12 +8,16 @@
   ansible.builtin.shell: /tmp/Miniforge3-Linux-x86_64.sh -b -u
   become_user: '{{ target_user }}'
 
-- name: Run Conda init (Debian and Fedora)
+- name: Run Mamba init (Debian and Fedora)
   ansible.builtin.shell: ~/miniforge3/bin/mamba init
   become_user: '{{ target_user }}'
 
 #- name: Create new Mamba environment (MNE)
-#  ansible.builtin.shell: source ~/.bashrc && mamba create -n mne mne -y
+#  ansible.builtin.shell: source ~/.bashrc && mamba create -n mne python=3.11 -y
+#  become_user: '{{ target_user }}'
+
+#- name: Instal Python packages (MNE)
+#  ansible.builtin.shell: source ~/.bashrc && mamba install -n mne mne graph-tool igraph mne-connectivity -y
 #  become_user: '{{ target_user }}'
 
 #- name: Create new Mamba environment (Pytorch)
@@ -21,16 +25,16 @@
 #  become_user: '{{ target_user }}'
 
 #- name: Instal Python packages (Pytorch)
-#  ansible.builtin.shell: source ~/.bashrc && mamba install -n pytorch pytorch torchvision torchaudio pytorch-cuda=12.1 transformers sentence-transformers jupyterlab xformers -c xformers -c pytorch -c nvidia -y
+#  ansible.builtin.shell: source ~/.bashrc && mamba install -n pytorch pytorch torchvision torchaudio pytorch-cuda=12.1 transformers sentence-transformers jupyterlab xformers pandas matplotlib -c xformers -c pytorch -c nvidia -y
 #  become_user: '{{ target_user }}'
 
 
-#- name: Create new Mamba environment (TEST)
-#  ansible.builtin.shell: source ~/.bashrc && mamba create -n test python=3.11 -y
-#  become_user: '{{ target_user }}'
+- name: Create new Mamba environment (TEST)
+  ansible.builtin.shell: source ~/.bashrc && mamba create -n test python=3.11 -y
+  become_user: '{{ target_user }}'
 
-#- name: Install numpy in test (TEST)
-#  ansible.builtin.shell: source ~/.bashrc && mamba install -n test numpy -y
-#  become_user: '{{ target_user }}'
+- name: Install numpy in test (TEST)
+  ansible.builtin.shell: source ~/.bashrc && mamba install -n test numpy -y
+  become_user: '{{ target_user }}'
 
 
