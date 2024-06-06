@@ -20,3 +20,10 @@
 
   # Install Acer turbo mode module in debian, fedora ships with kernel 6.8+ and that already has it built in
   - import_tasks: system/acer_turbo.yml
+
+  # Modify Gnome tweaks according to preference
+  - import_tasks: desktop_environments/gnome/tweaks.yml
+
+  # Modify Home and Lock screen wallpaper
+  - import_tasks: desktop_environments/gnome/appearance.yml
+

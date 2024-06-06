@@ -1,0 +1,14 @@
+- name: Enable Minimize and Maximize buttons on titlebars
+  ansible.builtin.command:
+    cmd: gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+  changed_when: false
+
+- name: Turn on Large Text in Accessibility
+  ansible.builtin.command:
+    cmd: gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
+  changed_when: false
+
+- name: Enable Tap to Click for touchpad
+  ansible.builtin.command:
+    cmd: gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+  changed_when: false
