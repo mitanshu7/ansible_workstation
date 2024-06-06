@@ -1,0 +1,19 @@
+# Load distro-specific variables
+#- include_vars: "{{ ansible_distribution }}.yml"
+#  tags: always
+
+- block:
+  # Install flatpak and all the apps needed from there.
+  - import_tasks: software/flatpak.yml
+
+  # Install VS Code
+  - import_tasks: software/vscode.yml
+
+  # Install miniforge and setup python envs (mne, pytorch)
+  - import_tasks: software/miniforge_env.yml
+
+  # Install Joplin, the note taking app 
+  - import_tasks: software/joplin.yml
+
+  # Install Cloudflare VPN
+  - import_tasks: software/cloudflare_warp.yml

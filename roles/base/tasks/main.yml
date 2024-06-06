@@ -8,24 +8,22 @@
 
   # Upgrade all installed packages
   - import_tasks: software/upgrade_packages.yml
+
   # Install gcc, git...
   - import_tasks: software/development_packages.yml
+
   # Enable non-free repos to install nvidia-drivers
   - import_tasks: software/enable_nonfree.yml
   - import_tasks: software/nvidia_drivers.yml
-  # Install flatpak and all the apps needed from there.
-  - import_tasks: software/flatpak.yml
-  # Install VS Code
-  - import_tasks: software/vscode.yml
+
   # Install miniforge and setup python envs (mne, pytorch)
-  - import_tasks: software/miniforge.yml
+  - import_tasks: software/miniforge_base.yml
+
   # Install Github cli for easy management
   - import_tasks: software/github_cli.yml
-  # Install Joplin, the note taking app 
-  - import_tasks: software/joplin.yml
+
   # Install misc packages like htop, fastfetch...
   - import_tasks: software/misc_packages.yml
+
   # Install point-to-point Tailscale vpn
   - import_tasks: software/tailscale.yml
-  # Install Cloudflare VPN
-  - import_tasks: software/cloudflare_warp.yml

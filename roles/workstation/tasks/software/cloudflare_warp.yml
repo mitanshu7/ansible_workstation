@@ -11,16 +11,17 @@
     filename: cloudflare-client
     state: present
   when: ansible_distribution == "Debian"
+  register: debian_cloudflare_warp_repo
 
 - name: Update APT package index (Debian)
   ansible.builtin.apt:
     update_cache: yes
-  when: ansible_distribution == "Debian"
+  when: debian_cloudflare_warp_repo.changed
 
 - name: Install Cloudflare WARP (Debian)
   ansible.builtin.apt:
     name: cloudflare-warp
-    state: present
+    state: latest
   when: ansible_distribution == "Debian"
 
 - name: Add Cloudflare WARP repository (Fedora)
@@ -29,16 +30,17 @@
     dest: /etc/yum.repos.d/cloudflare-warp.repo
     mode: '0644'
   when: ansible_distribution == "Fedora"
+  register: fedora_cloudflare_warp_repo
 
 - name: Update YUM package index (Fedora)
   ansible.builtin.yum:
     update_cache: yes
-  when: ansible_distribution == "Fedora"
+  when: fedora_cloudflare_warp_repo.changed
 
 - name: Install Cloudflare WARP (Fedora)
   ansible.builtin.yum:
     name: cloudflare-warp
-    state: present
+    state: latest
   when: ansible_distribution == "Fedora"
 
 - name: Setup Cloudflare (Debian and Fedora)
