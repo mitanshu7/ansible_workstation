@@ -3,9 +3,6 @@
 #  tags: always
 
 - block:
-  # Update Ansible collections
-  - import_tasks: software/update_ansible_collections.yml
-
   # Import bash aliases
   - import_tasks: system/bash_aliases.yml
 
