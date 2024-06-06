@@ -29,3 +29,15 @@
     name: fastfetch
     state: latest
   when: ansible_distribution == "Fedora"
+
+- name: Install rclone package (Debian)
+  ansible.builtin.apt:
+    name: rclone
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Install rclone package (Fedora)
+  ansible.builtin.dnf:
+    name: rclone
+    state: latest
+  when: ansible_distribution == "Fedora"
