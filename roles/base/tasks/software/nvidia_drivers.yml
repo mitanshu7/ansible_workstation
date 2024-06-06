@@ -5,6 +5,7 @@
       - firmware-misc-nonfree
     state: latest
   when: ansible_distribution == "Debian"
+  notify: reboot
 
 - name: Install Nvidia Drivers (Fedora)
   ansible.builtin.dnf:
@@ -33,3 +34,10 @@
 - name: Rebuild the initramfs image (Fedora)
   ansible.builtin.command: dracut --force
   when: nvidia_driver_fedora.changed
+
+- name: Pause for 3 minutes for the configuration to be read from the updated kernel modules (Fedora)
+  ansible.builtin.pause:
+    minutes: 3
+  when: nvidia_driver_fedora.changed
+  notify: reboot
+
