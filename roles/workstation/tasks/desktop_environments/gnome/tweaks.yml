@@ -8,15 +8,18 @@
     key: "/org/gnome/desktop/wm/preferences/button-layout"
     value: "'minimize,maximize,close'"
   changed_when: false
+  become_user: '{{ target_user }}'
 
 - name: Turn on Large Text in Accessibility
   community.general.dconf:
     key: "/org/gnome/desktop/interface/text-scaling-factor"
     value: "'1.25'"
   changed_when: false
+  become_user: '{{ target_user }}'
 
 - name: Enable Tap to Click for touchpad
   community.general.dconf:
     key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
     value: "'true'"
   changed_when: false
+  become_user: '{{ target_user }}'
