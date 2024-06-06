@@ -1,0 +1,15 @@
+- name: Ensure curl is installed (Debian)
+  ansible.builtin.apt:
+    name: curl
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Ensure curl is installed (Fedora)
+  ansible.builtin.dnf:
+    name: curl
+    state: latest
+  when: ansible_distribution == "Fedora"
+
+- name: Install Tailscale (Debian and Fedora)
+  ansible.builtin.shell: curl -fsSL https://tailscale.com/install.sh | sh
+  become_user: '{{ target_user }}'

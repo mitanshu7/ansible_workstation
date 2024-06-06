@@ -22,3 +22,5 @@
   - import_tasks: software/joplin.yml
   # Install misc packages like htop, fastfetch...
   - import_tasks: software/misc_packages.yml
+  # Install Tailscale vpn
+  - import_tasks: software/tailscale.yml
