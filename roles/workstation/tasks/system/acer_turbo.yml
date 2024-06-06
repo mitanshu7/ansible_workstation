@@ -2,24 +2,20 @@
   ansible.builtin.apt:
     name: git
     state: latest
-  when: ansible_distribution == "Debian" and ansible_product_name ==  "Predator PHN16-71"
 
 - name: Clone the Git(JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) repository (Debian)
   ansible.builtin.git:
     repo: https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module
     dest: /tmp/acer-predator-turbo-and-rgb-keyboard-linux-module
     force: yes
-  when: ansible_distribution == "Debian" and ansible_product_name ==  "Predator PHN16-71"
 
 - name: Change permissions of systemd service script (Debian)
   ansible.builtin.file:
     path: /tmp/acer-predator-turbo-and-rgb-keyboard-linux-module/install_service.sh
     mode: '0755'
     state: file
-  when: ansible_distribution == "Debian" and ansible_product_name ==  "Predator PHN16-71"
 
 - name: Run the install_service.sh script (Debian)
   ansible.builtin.command: ./install_service.sh
   args:
     chdir: /tmp/acer-predator-turbo-and-rgb-keyboard-linux-module
-  when: ansible_distribution == "Debian" and ansible_product_name ==  "Predator PHN16-71"

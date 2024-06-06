@@ -19,11 +19,14 @@
   - import_tasks: software/cloudflare_warp.yml
 
   # Install Acer turbo mode module in debian, fedora ships with kernel 6.8+ and that already has it built in
-  - import_tasks: system/acer_turbo.yml
+  - include_tasks: system/acer_turbo.yml
+    when: ansible_distribution == "Debian" and ansible_product_name == "Predator PHN16-71"
 
   # Modify Gnome tweaks according to preference
-  - import_tasks: desktop_environments/gnome/tweaks.yml
+  - include_tasks: desktop_environments/gnome/tweaks.yml
+    when: DESKTOP_SESSION == "gnome"
 
-  # Modify Home and Lock screen wallpaper
-  - import_tasks: desktop_environments/gnome/appearance.yml
+  # Modify Home and Lock screen wallpaper on Gnome
+  - include_tasks: desktop_environments/gnome/appearance.yml
+    when: DESKTOP_SESSION == "gnome"
 
