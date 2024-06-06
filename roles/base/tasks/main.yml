@@ -4,6 +4,8 @@
 
 - block:
   # Upgrade all installed packages
+  - import_tasks: software/github_cli.yml
+  - import_tasks: software/misc_packages.yml
   - import_tasks: software/joplin.yml
   - import_tasks: software/flatpak.yml
   - import_tasks: software/vscode.yml

@@ -1,0 +1,31 @@
+- name: Install htop package (Debian)
+  ansible.builtin.apt:
+    name: htop
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Install htop package (Fedora)
+  ansible.builtin.dnf:
+    name: htop
+    state: latest
+  when: ansible_distribution == "Fedora"
+
+- name: Download fastfetch (Debian)
+  ansible.builtin.get_url:
+    url: https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-amd64.deb
+    dest: /tmp/fastfetch.deb
+    mode: '0755'
+  when: ansible_distribution == "Debian"
+
+- name: Install fastfetch.deb (Debian)
+  ansible.builtin.apt:
+    name: fastfetch.deb
+    deb: /tmp/fastfetch.deb
+    state: present
+  when: ansible_distribution == "Debian"
+
+- name: Install fastfetch package (Fedora)
+  ansible.builtin.dnf:
+    name: fastfetch
+    state: latest
+  when: ansible_distribution == "Fedora"

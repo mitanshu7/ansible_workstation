@@ -34,5 +34,6 @@
 - name: Install Visual Studio Code (Fedora)
   ansible.builtin.dnf:
     name: code
+    state: latest
   when: ansible_distribution == "Fedora"
 

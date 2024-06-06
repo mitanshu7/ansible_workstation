@@ -1,0 +1,58 @@
+- name: Ensure wget is installed (Debian)
+  ansible.builtin.apt:
+    name: wget
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Create /etc/apt/keyrings directory with correct permissions (Debian)
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+  when: ansible_distribution == "Debian"
+
+
+- name: Download GitHub CLI archive keyring (Debian)
+  ansible.builtin.get_url:
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+    mode: '0644'
+  when: ansible_distribution == "Debian"
+
+- name: Add GitHub CLI repository (Debian)
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ ansible_architecture }} signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+    filename: github-cli
+    state: present
+  when: ansible_distribution == "Debian"
+
+- name: Update APT package index (Debian)
+  ansible.builtin.apt:
+    update_cache: yes
+  when: ansible_distribution == "Debian"
+
+- name: Install GitHub CLI (Debian)
+  ansible.builtin.apt:
+    name: gh
+    state: latest
+  when: ansible_distribution == "Debian"
+
+
+- name: Ensure dnf-command(config-manager) is installed (Fedora)
+  ansible.builtin.dnf:
+    name: "dnf-command(config-manager)"
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Add GitHub CLI repository (Fedora)
+  ansible.builtin.command: dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+  args:
+    creates: /etc/yum.repos.d/gh-cli.repo
+  when: ansible_distribution == "Fedora"
+
+- name: Install GitHub CLI (Fedora)
+  ansible.builtin.dnf:
+    name: gh
+    enablerepo: gh-cli
+    state: latest
+  when: ansible_distribution == "Fedora"
