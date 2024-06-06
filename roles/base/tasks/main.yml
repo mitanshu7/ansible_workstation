@@ -3,6 +3,9 @@
 #  tags: always
 
 - block:
+  # Import bash aliases
+  - import_tasks: system/bash_aliases.yml
+
   # Upgrade all installed packages
   - import_tasks: software/upgrade_packages.yml
   # Install gcc, git...

@@ -1,0 +1,72 @@
+- name: Ensure .bashrc exists
+  ansible.builtin.file:
+    path: ~/.bashrc
+    state: touch
+    mode: '0644'
+  run_once: true
+  become_user: '{{ target_user }}'
+
+- name: Add alias for fastfetch
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias ff="fastfetch"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+
+- name: Add alias for sshociopc
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias sshociopc="ssh -i {{ oci_key_file }} opc@{{ oci_ip }}"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+
+- name: Add alias for Visual Studio Code
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias vsc="code . && exit"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+
+- name: Add alias for updating packages (Debian)
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias dup="sudo apt update && sudo apt upgrade"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+  when: ansible_distribution == "Debian"
+
+- name: Add alias for cleaning up packages (Debian)
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias dc="sudo apt autoremove"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+  when: ansible_distribution == "Debian"
+
+- name: Add alias for updating packages (Fedora)
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias fup="sudo dnf upgrade"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+  when: ansible_distribution == "Fedora"
+
+- name: Add alias for cleaning up packages (Fedora)
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias fc="sudo dnf autoremove"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+  when: ansible_distribution == "Fedora"
+
+- name: Source .bashrc to apply changes
+  ansible.builtin.shell: source ~/.bashrc
+  run_once: true
+  become_user: '{{ target_user }}'
