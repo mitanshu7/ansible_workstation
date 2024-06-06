@@ -24,9 +24,12 @@
 
   # Modify Gnome tweaks according to preference
   - include_tasks: desktop_environments/gnome/tweaks.yml
-    when: DESKTOP_SESSION == "gnome"
+#    when: ansible_env["DESKTOP_SESSION"] == "gnome"
 
   # Modify Home and Lock screen wallpaper on Gnome
   - include_tasks: desktop_environments/gnome/appearance.yml
-    when: DESKTOP_SESSION == "gnome"
+#    when: ansible_env["DESKTOP_SESSION"] == "gnome"
+
+  # Add Keybindings in Gnome
+  - import_tasks: desktop_environments/gnome/keybindings.yml
 

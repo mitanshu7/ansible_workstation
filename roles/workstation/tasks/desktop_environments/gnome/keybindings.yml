@@ -1,0 +1,52 @@
+# Custom shortcuts are more complicated.  For each shortcut, you have to define a name, a command, and a binding.
+
+# Terminal
+
+- name: gnome | keybindings | set terminal keybinding
+  tags: gnome,keybindings
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value}}"
+  with_items:
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name", value: "'terminal'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding", value: "'<Super>t'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command", value: "'gnome-terminal --maximize'" }
+  become_user: '{{ target_user }}'
+
+
+# Calculator
+
+- name: gnome | keybindings | set calculator keybinding
+  tags: gnome,keybindings
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value}}"
+  with_items:
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name", value: "'calculator'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding", value: "'<Super>c'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command", value: "'gnome-calculator'" }
+  become_user: '{{ target_user }}'
+
+
+
+# Files
+
+- name: gnome | keybindings | set calculator keybinding
+  tags: gnome,keybindings
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value}}"
+  with_items:
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/name", value: "'files'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/binding", value: "'<Super>e'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/command", value: "'nautilus'" }
+  become_user: '{{ target_user }}'
+
+
+# All of your custom shortcuts must also be added to an array.
+
+- name: enable custom keybindings
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+  become_user: '{{ target_user }}'
