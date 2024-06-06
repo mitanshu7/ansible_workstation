@@ -22,5 +22,7 @@
   - import_tasks: software/joplin.yml
   # Install misc packages like htop, fastfetch...
   - import_tasks: software/misc_packages.yml
-  # Install Tailscale vpn
+  # Install point-to-point Tailscale vpn
   - import_tasks: software/tailscale.yml
+  # Install Cloudflare VPN
+  - import_tasks: software/cloudflare_warp.yml

@@ -1,0 +1,46 @@
+- name: Add Cloudflare GPG key (Debian)
+  ansible.builtin.apt_key:
+    url: https://pkg.cloudflareclient.com/pubkey.gpg
+    state: present
+    keyring: /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
+  when: ansible_distribution == "Debian"
+
+- name: Add Cloudflare WARP repository (Debian)
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ {{ ansible_lsb.codename }} main"
+    filename: cloudflare-client
+    state: present
+  when: ansible_distribution == "Debian"
+
+- name: Update APT package index (Debian)
+  ansible.builtin.apt:
+    update_cache: yes
+  when: ansible_distribution == "Debian"
+
+- name: Install Cloudflare WARP (Debian)
+  ansible.builtin.apt:
+    name: cloudflare-warp
+    state: present
+  when: ansible_distribution == "Debian"
+
+- name: Add Cloudflare WARP repository (Fedora)
+  ansible.builtin.get_url:
+    url: https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo
+    dest: /etc/yum.repos.d/cloudflare-warp.repo
+    mode: '0644'
+  when: ansible_distribution == "Fedora"
+
+- name: Update YUM package index (Fedora)
+  ansible.builtin.yum:
+    update_cache: yes
+  when: ansible_distribution == "Fedora"
+
+- name: Install Cloudflare WARP (Fedora)
+  ansible.builtin.yum:
+    name: cloudflare-warp
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Setup Cloudflare (Debian and Fedora)
+  ansible.builtin.command: warp-cli --accept-tos registration new
+  ignore_errors: true
