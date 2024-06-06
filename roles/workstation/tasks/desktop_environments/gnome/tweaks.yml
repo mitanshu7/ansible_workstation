@@ -1,7 +1,14 @@
-- name: Ensure psutil is installed
+- name: Ensure psutil is installed (Debian)
+  ansible.builtin.apt:
+    name: python3-psutil
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Ensure psutil is installed (Fedora)
   ansible.builtin.pip:
     name: psutil
     state: present
+  when: ansible_distribution == "Fedora"
 
 - name: Enable Minimize and Maximize buttons on titlebars
   community.general.dconf:
