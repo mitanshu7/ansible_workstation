@@ -17,3 +17,6 @@
 
   # Install Cloudflare VPN
   - import_tasks: software/cloudflare_warp.yml
+
+  # Install Acer turbo mode module in debian, fedora ships with kernel 6.8+ and that already has it built in
+  - import_tasks: system/acer_turbo.yml
