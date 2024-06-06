@@ -65,8 +65,3 @@
   run_once: true
   become_user: '{{ target_user }}'
   when: ansible_distribution == "Fedora"
-
-- name: Source .bashrc to apply changes
-  ansible.builtin.shell: source ~/.bashrc
-  run_once: true
-  become_user: '{{ target_user }}'
