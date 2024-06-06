@@ -4,15 +4,21 @@
 #  register: mne_env_exists
 #  ignore_errors: true
 #  become_user: '{{ target_user }}'
+#  args:
+#     executable: /bin/bash
 
 #- name: Create new Mamba environment (MNE)
 #  ansible.builtin.shell: source ~/.bashrc && mamba create -n mne python=3.11 -y
 #  become_user: '{{ target_user }}'
 #  when: mne_env_exists.rc != 0
+#  args:
+#     executable: /bin/bash
 
 #- name: Instal Python packages (MNE)
 #  ansible.builtin.shell: source ~/.bashrc && mamba install -n mne mne graph-tool igraph mne-connectivity -y
 #  become_user: '{{ target_user }}'
+#  args:
+#     executable: /bin/bash
 
 #- name: Check if Mamba environment (PYTORCH) exists
 #  ansible.builtin.shell: |
@@ -20,32 +26,42 @@
 #  register: pytorch_env_exists
 #  ignore_errors: true
 #  become_user: '{{ target_user }}'
+#  args:
+#     executable: /bin/bash
 
 #- name: Create new Mamba environment (PYTORCH)
 #  ansible.builtin.shell: source ~/.bashrc && mamba create -n pytorch python=3.10 -y
 #  become_user: '{{ target_user }}'
 #  when: pytorch_env_exists.rc != 0
+#  args:
+#     executable: /bin/bash
 
 #- name: Instal Python packages (PYTORCH)
 #  ansible.builtin.shell: source ~/.bashrc && mamba install -n pytorch pytorch torchvision torchaudio pytorch-cuda=12.1 transformers sentence-transformers jupyterlab xformers pandas matplotlib -c xformers -c pytorch -c nvidia -y
 #  become_user: '{{ target_user }}'
-
+#  args:
+#     executable: /bin/bash
 - name: Check if Mamba environment (TEST) exists
   ansible.builtin.shell: |
     source ~/.bashrc && mamba env list | grep -q test
   register: test_env_exists
   ignore_errors: true
   become_user: '{{ target_user }}'
+  args:
+     executable: /bin/bash
 
 - name: Create new Mamba environment (TEST) if it doesn't exist
   ansible.builtin.shell: source ~/.bashrc && mamba create -n test python=3.11 -y
   become_user: '{{ target_user }}'
   when: test_env_exists.rc != 0
+  args:
+     executable: /bin/bash
 
 - name: Install numpy in test (TEST)
   ansible.builtin.shell: source ~/.bashrc && mamba install -n test numpy -y
   become_user: '{{ target_user }}'
-
+  args:
+     executable: /bin/bash
 
 #Why grep in quiet mode and what env_exists.rc is doing
 #Quiet mode (-q): Instructs grep to not output anything to the terminal. It just sets the return code, which makes it useful for conditional checks.
