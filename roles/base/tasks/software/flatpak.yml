@@ -10,5 +10,24 @@
     state: latest
   when: ansible_distribution == "Fedora"
 
-- name: Enable Flatpak Repo (Debian and Fedora)
-  ansible.builtin.command: flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+- name: Add the flathub flatpak repository remote to the user installation (Debian and Fedora)
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+  become_user: '{{ target_user }}'
+
+- name: Install Flatpak Apps (Debian and Fedora)
+  community.general.flatpak:
+    name:
+      - org.gnome.Extensions
+      - com.mattjakeman.ExtensionManager
+      - com.spotify.Client
+#      - com.brave.Browser
+#      - org.mozilla.firefox
+#      - com.google.Chrome
+#      - io.github.alainm23.planify
+#      - org.strawberrymusicplayer.strawberry
+    state: latest
+  become_user: '{{ target_user }}'
