@@ -19,7 +19,6 @@
 
 - name: Install fastfetch.deb (Debian)
   ansible.builtin.apt:
-    name: fastfetch.deb
     deb: /tmp/fastfetch.deb
     state: present
   when: ansible_distribution == "Debian"
