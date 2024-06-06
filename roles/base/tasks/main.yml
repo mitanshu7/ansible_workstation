@@ -4,6 +4,7 @@
 
 - block:
   # Upgrade all installed packages
+  - import_tasks: software/joplin.yml
   - import_tasks: software/flatpak.yml
   - import_tasks: software/vscode.yml
   - import_tasks: software/miniforge.yml
