@@ -35,7 +35,7 @@ echo "Ansible installation complete!"
 # Run playbook (if Ansible is installed)
 if hash ansible 2>/dev/null; then
   echo "Running Playbooks"
-  ansible-playbook --ask-become-pass local.yml  # Consider error handling here
+  ansible-playbook local.yml --ask-vault-pass --ask-become-pass  # Consider error handling here
 else
   echo "Ansible is not installed. Playbook skipped."
 fi

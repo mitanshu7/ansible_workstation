@@ -3,6 +3,10 @@
 #  tags: always
 
 - block:
+  # Copy OCI OPC SSH key and set alias
+  - include_tasks: system/oci_opc_key_setup.yml
+    when: copy_ociopc_key == true
+
   # Install flatpak and all the apps needed from there.
   - import_tasks: software/flatpak.yml
 
@@ -32,4 +36,5 @@
 
   # Add Keybindings in Gnome
   - import_tasks: desktop_environments/gnome/keybindings.yml
+
 

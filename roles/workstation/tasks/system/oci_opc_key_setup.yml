@@ -1,0 +1,14 @@
+- name: Copy OCI OPC SSH private key
+  copy:
+    content: "{{ oci_opc_key }}"
+    dest: "{{ oci_key_file }}"
+    mode: 0600
+  become_user: '{{ target_user }}'
+
+- name: Add alias for SSH to OCI OPC
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias sshociopc="ssh -i {{ oci_key_file }} opc@{{ oci_ip }}"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'

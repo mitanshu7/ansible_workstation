@@ -1,0 +1,4 @@
+copy_ociopc_key: true
+oci_ip: '{{ vault_oci_ip }}'
+oci_key_file: '/home/{{ target_user }}/.ssh/oci_opc_key'
+oci_opc_key: '{{ vault_oci_opc_key }}'
