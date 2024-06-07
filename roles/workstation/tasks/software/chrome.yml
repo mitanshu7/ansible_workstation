@@ -1,0 +1,11 @@
+- name: Install Google Chrome .deb package (Debian)
+  ansible.builtin.apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    state: present
+  when: ansible_distribution == "Debian"
+
+- name: Install Google Chrome .rpm package (Fedora)
+  ansible.builtin.dnf:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    state: present
+  when: ansible_distribution == "Fedora"

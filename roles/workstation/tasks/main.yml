@@ -13,6 +13,9 @@
   # Install VS Code
   - import_tasks: software/vscode.yml
 
+  # Install Chrome browser
+  - import_tasks: software/chrome.yml
+
   # Install miniforge and setup python envs (mne, pytorch)
   - import_tasks: software/miniforge_env.yml
 
