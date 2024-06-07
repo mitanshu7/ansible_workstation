@@ -4,8 +4,14 @@
     state: present
   when: ansible_distribution == "Debian"
 
+- name: Add Google Chrome repository GPG key (Fedora)
+  ansible.builtin.rpm_key:
+    key: https://dl.google.com/linux/linux_signing_key.pub
+    state: present
+  when: ansible_distribution == "Fedora"
+
 - name: Install Google Chrome .rpm package (Fedora)
   ansible.builtin.dnf:
-    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
     state: present
   when: ansible_distribution == "Fedora"
