@@ -15,9 +15,12 @@
   # Install gcc, git...
   - import_tasks: software/development_packages.yml
 
-  # Enable non-free repos to install nvidia-drivers
+  # Enable non-free repos
   - import_tasks: software/enable_nonfree.yml
+
+  # Install nvidia drivers
   - import_tasks: software/nvidia_drivers.yml
+    when: install_nvidia_drivers == true
 
   # Install miniforge and setup python envs (mne, pytorch)
   - import_tasks: software/miniforge_base.yml
