@@ -1,14 +1,32 @@
-- name: Install htop package (Debian)
+- name: Install misc packages (Debian)
   ansible.builtin.apt:
-    name: htop
+    name:
+      - htop
+      - tree
+      - rclone
+      - python3-pip
+      - rsync
+      - curl
+      - wget
+      - aptitude
+      - software-properties-common
     state: latest
   when: ansible_distribution == "Debian"
 
-- name: Install htop package (Fedora)
+- name: Install misc packages (Fedora)
   ansible.builtin.dnf:
-    name: htop
+    name:
+      - htop
+      - tree
+      - fastfetch
+      - rclone
+      - python3-pip
+      - rsync
+      - curl
+      - wget
     state: latest
   when: ansible_distribution == "Fedora"
+
 
 - name: Download fastfetch (Debian)
   ansible.builtin.get_url:
@@ -22,33 +40,3 @@
     deb: /tmp/fastfetch.deb
     state: present
   when: ansible_distribution == "Debian"
-
-- name: Install fastfetch package (Fedora)
-  ansible.builtin.dnf:
-    name: fastfetch
-    state: latest
-  when: ansible_distribution == "Fedora"
-
-- name: Install rclone package (Debian)
-  ansible.builtin.apt:
-    name: rclone
-    state: latest
-  when: ansible_distribution == "Debian"
-
-- name: Install rclone package (Fedora)
-  ansible.builtin.dnf:
-    name: rclone
-    state: latest
-  when: ansible_distribution == "Fedora"
-
-- name: Install python3-pip package (Debian)
-  ansible.builtin.apt:
-    name: python3-pip
-    state: latest
-  when: ansible_distribution == "Debian"
-
-- name: Install python3-pip package (Fedora)
-  ansible.builtin.dnf:
-    name: python3-pip
-    state: latest
-  when: ansible_distribution == "Fedora"
