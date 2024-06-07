@@ -1,1 +1,1 @@
-target_user: mitanshu
+# Add distribution specific variables in {{ ansible_distribution }}.yml files beside this one

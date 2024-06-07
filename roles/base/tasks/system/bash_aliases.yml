@@ -14,18 +14,18 @@
   run_once: true
   become_user: '{{ target_user }}'
 
-- name: Add alias for sshociopc
-  ansible.builtin.lineinfile:
-    path: ~/.bashrc
-    line: 'alias sshociopc="ssh -i {{ oci_key_file }} opc@{{ oci_ip }}"'
-    state: present
-  run_once: true
-  become_user: '{{ target_user }}'
-
 - name: Add alias for Visual Studio Code
   ansible.builtin.lineinfile:
     path: ~/.bashrc
     line: 'alias vsc="code . && exit"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+
+- name: Exporting Nano as the default EDITOR
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'export EDITOR=nano'
     state: present
   run_once: true
   become_user: '{{ target_user }}'
