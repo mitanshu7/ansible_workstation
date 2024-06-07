@@ -30,6 +30,14 @@
   run_once: true
   become_user: '{{ target_user }}'
 
+- name: Exporting Nano as the default EDITOR
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'export EDITOR=nano'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+
 - name: Add alias for updating packages (Debian)
   ansible.builtin.lineinfile:
     path: ~/.bashrc
