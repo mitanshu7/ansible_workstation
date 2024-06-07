@@ -1,6 +1,6 @@
 # Load distro-specific variables
-#- include_vars: "{{ ansible_distribution }}.yml"
-#  tags: always
+- include_vars: "{{ ansible_distribution }}.yml"
+  tags: always
 
 - block:
   # Copy OCI OPC SSH key and set alias

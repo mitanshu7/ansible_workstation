@@ -1,6 +1,6 @@
 # Load distro-specific variables
-#- include_vars: "{{ ansible_distribution }}.yml"
-#  tags: always
+- include_vars: "{{ ansible_distribution }}.yml"
+  tags: always
 
 - block:
   # Import bash aliases
@@ -27,3 +27,6 @@
 
   # Install point-to-point Tailscale vpn
   - import_tasks: software/tailscale.yml
+
+  # Install cron and enable cron daemon
+  - import_tasks: system/cron.yml
