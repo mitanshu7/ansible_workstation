@@ -1,3 +1,1 @@
-target_user: mitanshu
-oci_ip: 127.0.0.1
-oci_key_file: '/home/{{ target_user }}/.ssh/oci_key'
+# Add distribution specific variables in {{ ansible_distribution }}.yml files beside this one
