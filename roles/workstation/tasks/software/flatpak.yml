@@ -24,14 +24,15 @@
       - org.gnome.Extensions
       - com.mattjakeman.ExtensionManager
       - com.spotify.Client
-#      - org.qbittorrent.qBittorrent
-#      - org.libreoffice.LibreOffice
-#      - org.kde.okular
-#      - org.videolan.VLC
-#      - org.remmina.Remmina
-#      - com.brave.Browser
-#      - org.mozilla.firefox
-#      - io.github.alainm23.planify
-#      - org.strawberrymusicplayer.strawberry
+      - com.github.d4nj1.tlpui
+      - org.qbittorrent.qBittorrent
+      - org.libreoffice.LibreOffice
+      - org.kde.okular
+      - org.videolan.VLC
+      - org.remmina.Remmina
+      - com.brave.Browser
+      - org.mozilla.firefox
+      - io.github.alainm23.planify
+      - org.strawberrymusicplayer.strawberry
     state: latest
   become_user: '{{ target_user }}'

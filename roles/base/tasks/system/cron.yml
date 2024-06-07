@@ -7,7 +7,7 @@
 
 - name: system setup | cron | start and enable cron daemon
   tags: cron
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: "{{ cron_service }}"
     state: started
     enabled: true

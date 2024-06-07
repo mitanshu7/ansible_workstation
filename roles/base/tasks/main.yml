@@ -6,6 +6,9 @@
   # Import bash aliases
   - import_tasks: system/bash_aliases.yml
 
+  # Cleanup apps
+  - import_tasks: software/cleanup_packages.yml
+
   # Upgrade all installed packages
   - import_tasks: software/upgrade_packages.yml
 
