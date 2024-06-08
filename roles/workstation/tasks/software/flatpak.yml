@@ -39,6 +39,7 @@
       - com.rafaelmardojai.Blanket
       - com.calibre_ebook.calibre
       - net.cozic.joplin_desktop
+      - org.gnome.gitlab.somas.Apostrophe
     state: latest
   become_user: '{{ target_user }}'
 
