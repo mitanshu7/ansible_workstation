@@ -36,3 +36,6 @@
 
   # Install cron and enable cron daemon
   - import_tasks: system/cron.yml
+
+ # Install and enable tlp
+  - import_tasks: system/tlp.yml

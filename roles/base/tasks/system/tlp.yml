@@ -1,0 +1,11 @@
+- name: Install TLP (Debian and Fedora)
+  ansible.builtin.package:
+    name:
+      - tlp
+      - tlp-rdw
+
+- name: Enable and start TLP service (Debian and Fedora)
+  ansible.builtin.systemd_service:
+    name: tlp
+    state: started
+    enabled: true

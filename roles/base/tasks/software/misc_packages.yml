@@ -11,8 +11,6 @@
       - aptitude
       - software-properties-common
       - gparted
-      - tlp
-      - tlp-rdw
     state: latest
   when: ansible_distribution == "Debian"
 
@@ -28,8 +26,6 @@
       - curl
       - wget
       - gparted
-      - tlp
-      - tlp-rdw
     state: latest
   when: ansible_distribution == "Fedora"
 
