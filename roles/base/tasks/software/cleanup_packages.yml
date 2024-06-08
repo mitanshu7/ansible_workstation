@@ -38,3 +38,9 @@
       - libreoffice-common
     state: absent
 
+- name: Remove distribution firefox in favor of flatpak
+  ansible.builtin.package:
+    name:
+      - firefox
+      - firefox-esr
+    state: absent
