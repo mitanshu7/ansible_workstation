@@ -1,3 +1,10 @@
+- name: Ensure .ssh folder exists
+  ansible.builtin.file:
+    path: '/home/{{ target_user }}/.ssh'
+    state: directory
+    mode: 0700
+  become_user: '{{ target_user }}'
+
 - name: Copy OCI OPC SSH private key
   copy:
     content: "{{ oci_opc_key }}"
