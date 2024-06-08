@@ -67,6 +67,7 @@ Currently:
     2. miniforge
 4. Have a list of flags for software to be installed.
 5. Documentation for individual playbooks and configurations.
+6. Setup a user `ansible` and configure `ansible-pull` for an up-to date system.
 
 ### **Additional Information:**
 
