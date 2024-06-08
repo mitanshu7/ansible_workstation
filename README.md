@@ -1,6 +1,6 @@
 # Ansible Workstation Automation
 
-Ansible automates the management of remote systems and controls their desired state.
+[Ansible](https://www.ansible.com/) automates the management of remote systems and controls their desired state.
 This repository holds Ansible playbooks and configurations to automate the setup and configuration of my workstation environment. 
 
 **Features:**
@@ -65,13 +65,12 @@ Currently:
 3. Make the code more efficient for:
     1. Chrome
     2. miniforge
-4. Have a list of flags for software to be installed.  
+4. Have a list of flags for software to be installed.
+5. Documentation for individual playbooks and configurations.
 
 ### **Additional Information:**
 
-* This repository uses Ansible roles (optional) to organize configurations for specific functionalities.
-* Documentation for individual playbooks and configurations can be found within the respective files (optional).
-* Consider using a version control system (like Git) to manage your configurations.
+* This repository uses Ansible roles to organize configurations for specific functionalities.
 * Shoutout to LearnLinuxTV for all the resources!
 
 ### **Disclaimer:**
