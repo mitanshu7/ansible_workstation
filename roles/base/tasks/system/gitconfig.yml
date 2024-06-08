@@ -1,0 +1,7 @@
+- name: Copy git config file to home directory of target_user
+  ansible.builtin.copy:
+    src: gitconfig
+    dest: '/home/{{ target_user }}/.gitconfig'
+    owner: '{{ target_user }}'
+    group: '{{ target_user }}'
+    mode: 0644

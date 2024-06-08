@@ -1,0 +1,7 @@
+[init]
+	defaultBranch = main
+[user]
+	email = mitanshu.sukhwani@gmail.com
+	name = Mitanshu Sukhwani
+[push]
+	autoSetupRemote = true

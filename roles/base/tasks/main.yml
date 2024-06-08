@@ -28,6 +28,10 @@
   # Install Github cli for easy management
   - import_tasks: software/github_cli.yml
 
+  # Copy the .gitconfig file
+  - import_tasks: system/gitconfig.yml
+    when: copy_gitconfig == true
+
   # Install misc packages like htop, fastfetch...
   - import_tasks: software/misc_packages.yml
 
