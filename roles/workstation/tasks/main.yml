@@ -19,9 +19,6 @@
   # Install miniforge and setup python envs (mne, pytorch)
   - import_tasks: software/miniforge_env.yml
 
-  # Install Joplin, the note taking app 
-  - import_tasks: software/joplin.yml
-
   # Install Cloudflare VPN
   - import_tasks: software/cloudflare_warp.yml
 
