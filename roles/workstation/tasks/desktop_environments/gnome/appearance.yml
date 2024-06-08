@@ -21,28 +21,28 @@
     value: "'zoom'"
   become_user: '{{ target_user }}'
 
-- name: gnome | appearance | copy lock screen background file
-  tags: gnome,gnome-lockscreen
-  ansible.builtin.copy:
-    src: files/gnome/lockscreen.svg
-    dest: /usr/share/backgrounds/lockscreen.svg
-    owner: root
-    group: root
-    mode: 0644
+#- name: gnome | appearance | copy lock screen background file
+#  tags: gnome,gnome-lockscreen
+#  ansible.builtin.copy:
+#    src: files/gnome/lockscreen.svg
+#    dest: /usr/share/backgrounds/lockscreen.svg
+#    owner: root
+#    group: root
+#    mode: 0644
 
-- name: gnome | appearance | set lock screen background
-  tags: gnome,gnome-lockscreen
-  community.general.dconf:
-    key: "/org/gnome/desktop/screensaver/picture-uri"
-    value: "'file:///usr/share/backgrounds/lockscreen.svg'"
-  become_user: '{{ target_user }}'
+#- name: gnome | appearance | set lock screen background
+#  tags: gnome,gnome-lockscreen
+#  community.general.dconf:
+#    key: "/org/gnome/desktop/screensaver/picture-uri"
+#    value: "'file:///usr/share/backgrounds/lockscreen.svg'"
+#  become_user: '{{ target_user }}'
 
-- name: gnome | appearance | set lock screen background position
-  tags: gnome,gnome-lockscreen
-  community.general.dconf:
-    key: "/org/gnome/desktop/screensaver/picture-options"
-    value: "'zoom'"
-  become_user: '{{ target_user }}'
+#- name: gnome | appearance | set lock screen background position
+#  tags: gnome,gnome-lockscreen
+#  community.general.dconf:
+#    key: "/org/gnome/desktop/screensaver/picture-options"
+#    value: "'zoom'"
+#  become_user: '{{ target_user }}'
 
 #- name: gnome | appearance | gnome | appearance | set icon theme
 #  community.general.dconf:
