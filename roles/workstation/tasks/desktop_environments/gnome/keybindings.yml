@@ -42,11 +42,23 @@
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/command", value: "'nautilus'" }
   become_user: '{{ target_user }}'
 
+# Planify quick add
+
+- name: gnome | keybindings | set planify_quick_add keybinding
+  tags: gnome,keybindings
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value}}"
+  with_items:
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/name", value: "'planify_quick_add'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/binding", value: "'<Ctrl>q'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/command", value: "'flatpak run --command=io.github.alainm23.planify.quick-add io.github.alainm23.planify'" }
+  become_user: '{{ target_user }}'
 
 # All of your custom shortcuts must also be added to an array.
 
 - name: enable custom keybindings
   dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
-    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']"
   become_user: '{{ target_user }}'
