@@ -41,5 +41,6 @@
       - net.cozic.joplin_desktop
       - org.gnome.gitlab.somas.Apostrophe
     state: latest
+    method: user
   become_user: '{{ target_user }}'
 
