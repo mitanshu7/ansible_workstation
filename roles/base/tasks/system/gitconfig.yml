@@ -1,7 +1,14 @@
-- name: Copy git config file to home directory of target_user
+- name: Check if .gitconfig exists in home directory of user '{{ target_user }}'
+  ansible.builtin.stat:
+    path: '/home/{{ target_user }}/.gitconfig'
+  register: gitconfig_stat
+
+- name: Copy git config file to home directory of user '{{ target_user }}' if it doesnt exist already
   ansible.builtin.copy:
     src: gitconfig
     dest: '/home/{{ target_user }}/.gitconfig'
     owner: '{{ target_user }}'
     group: '{{ target_user }}'
     mode: 0644
+    backup: yes
+  when: not gitconfig_stat.stat.exists
