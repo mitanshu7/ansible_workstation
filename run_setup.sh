@@ -11,7 +11,7 @@ install_ansible() {
     pipx install --include-deps ansible
   elif [ "$(command -v dnf)" ]; then
     echo "Installing Ansible on Fedora/RedHat..."
-    sudo dnf update
+    sudo dnf upgrade --refresh --assumeno
     sudo dnf install -y pipx
     pipx ensurepath
     sudo pipx ensurepath --global
