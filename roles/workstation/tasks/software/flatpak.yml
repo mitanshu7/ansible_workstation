@@ -1,6 +1,8 @@
 - name: Install Flatpak (Debian)
   ansible.builtin.apt:
-    name: flatpak
+    name:
+      - flatpak
+      - gnome-software-plugin-flatpak
     state: latest
   when: ansible_distribution == "Debian"
 
@@ -34,5 +36,7 @@
       - org.mozilla.firefox
       - io.github.alainm23.planify
       - org.strawberrymusicplayer.strawberry
+      - com.rafaelmardojai.Blanket
     state: latest
   become_user: '{{ target_user }}'
+
