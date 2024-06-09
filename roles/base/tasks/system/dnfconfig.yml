@@ -1,0 +1,36 @@
+- name: Ensure dnf.conf exists
+  ansible.builtin.file:
+    path: /etc/dnf/dnf.conf
+    state: touch
+    mode: '0644'
+    owner: root
+    group: root
+  run_once: true
+
+- name: Change max_parallel_downloads to 10
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/dnf.conf
+    line: 'max_parallel_downloads=10'
+    state: present
+  run_once: true
+
+- name: Change fastestmirror to true
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/dnf.conf
+    line: 'fastestmirror=true'
+    state: present
+  run_once: true
+
+- name: Change defaultyes to True
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/dnf.conf
+    line: 'defaultyes=True'
+    state: present
+  run_once: true
+
+- name: Change keepcache to True
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/dnf.conf
+    line: 'keepcache=True'
+    state: present
+  run_once: true

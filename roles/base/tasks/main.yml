@@ -6,6 +6,10 @@
   # Import bash aliases
   - import_tasks: system/bash_aliases.yml
 
+  # Modify dnf on fedora for faster speeds
+  - import_tasks: system/dnfconfig.yml
+    when: ansible_distribution == "Fedora"
+
   # Cleanup apps
   - import_tasks: software/cleanup_packages.yml
 
