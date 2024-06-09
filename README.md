@@ -33,7 +33,7 @@ Currently:
 11. Install and enable cron.
 
 ### Workstation Role (Applies to machines in this group):
-1. Copy and setup OCI key if the flag is enables.
+1. Copy and setup my encrypted SSH keys if the flag is enabled.
 2. Install various apps from flatpak.
 3. Install VS Code.
 4. Install Chrome Browser, for compatibility purposes.
