@@ -1,0 +1,29 @@
+- name: Ensure .ssh folder exists
+  ansible.builtin.file:
+    path: '/home/{{ target_user }}/.ssh'
+    state: directory
+    mode: 0700
+  become_user: '{{ target_user }}'
+
+- name: Copy IISERT SSH private key
+  copy:
+    content: "{{ iisert_key }}"
+    dest: "{{ iisert_key_file }}"
+    mode: 0600
+  become_user: '{{ target_user }}'
+
+- name: Add alias for SSH to IISERT ara
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias sshara="ssh -i {{ iisert_key_file }} mitanshu@{{ iisert_ara_ip }}"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+
+- name: Add alias for SSH to IISERT pra
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias sshpra="ssh -i {{ iisert_key_file }} mitanshu@{{ iisert_pra_ip }}"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'

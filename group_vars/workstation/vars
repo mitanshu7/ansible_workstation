@@ -2,3 +2,8 @@ copy_ociopc_key: true
 oci_ip: '{{ vault_oci_ip }}'
 oci_key_file: '/home/{{ target_user }}/.ssh/oci_opc_key'
 oci_opc_key: '{{ vault_oci_opc_key }}'
+copy_iisert_key: true
+iisert_ara_ip: '{{ vault_iisert_ara_ip }}'
+iisert_pra_ip: '{{ vault_iisert_pra_ip }}'
+iisert_key_file: '/home/{{ target_user }}/.ssh/iisert_key'
+iisert_key: '{{ vault_iisert_key }}'
