@@ -1,17 +1,22 @@
+- name: Check if Google Chrome is installed
+  ansible.builtin.command: which google-chrome
+  register: chrome_check
+  ignore_errors: yes
+
 - name: Install Google Chrome .deb package (Debian)
   ansible.builtin.apt:
     deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     state: present
-  when: ansible_distribution == "Debian"
+  when: ansible_distribution == "Debian" and chrome_check.rc != 0
 
 - name: Add Google Chrome repository GPG key (Fedora)
   ansible.builtin.rpm_key:
     key: https://dl.google.com/linux/linux_signing_key.pub
     state: present
-  when: ansible_distribution == "Fedora"
+  when: ansible_distribution == "Fedora" and chrome_check.rc != 0
 
 - name: Install Google Chrome .rpm package (Fedora)
   ansible.builtin.dnf:
     name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
     state: present
-  when: ansible_distribution == "Fedora"
+  when: ansible_distribution == "Fedora" and chrome_check.rc != 0
