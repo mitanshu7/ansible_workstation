@@ -55,10 +55,23 @@
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/command", value: "'flatpak run --command=io.github.alainm23.planify.quick-add io.github.alainm23.planify'" }
   become_user: '{{ target_user }}'
 
+# System Monitor
+
+- name: gnome | keybindings | set system monitor keybinding
+  tags: gnome,keybindings
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value}}"
+  with_items:
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/name", value: "'system_monitor'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/binding", value: "'<Primary><Shift>Escape'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/command", value: "'gnome-system-monitor'" }
+  become_user: '{{ target_user }}'
+
 # All of your custom shortcuts must also be added to an array.
 
 - name: enable custom keybindings
   dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
-    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']"
+    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/']"
   become_user: '{{ target_user }}'
