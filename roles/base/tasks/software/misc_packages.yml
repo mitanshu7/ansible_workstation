@@ -1,5 +1,5 @@
-- name: Install misc packages (Debian)
-  ansible.builtin.apt:
+- name: Install misc packages
+  ansible.builtin.package:
     name:
       - htop
       - tree
@@ -8,24 +8,21 @@
       - rsync
       - curl
       - wget
+      - gparted
+    state: latest
+  
+- name: Install misc packages (Debian Specific)
+  ansible.builtin.apt:
+    name:
       - aptitude
       - software-properties-common
-      - gparted
     state: latest
   when: ansible_distribution == "Debian"
 
-- name: Install misc packages (Fedora)
+- name: Install misc packages (Fedora Specific)
   ansible.builtin.dnf:
     name:
-      - htop
-      - tree
       - fastfetch
-      - rclone
-      - python3-pip
-      - rsync
-      - curl
-      - wget
-      - gparted
     state: latest
   when: ansible_distribution == "Fedora"
 
