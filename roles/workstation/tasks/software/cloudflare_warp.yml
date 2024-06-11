@@ -43,6 +43,6 @@
     state: latest
   when: ansible_distribution == "Fedora"
 
-- name: Setup Cloudflare (Debian and Fedora)
-  ansible.builtin.command: warp-cli --accept-tos registration new
-  ignore_errors: true
+# - name: Setup Cloudflare (Debian and Fedora)
+#   ansible.builtin.command: warp-cli --accept-tos registration new
+#   ignore_errors: true

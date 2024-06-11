@@ -1,3 +1,9 @@
+- name: Check if Tailscale is installed
+  ansible.builtin.command: which tailscale
+  register: tailscale_check
+  ignore_errors: yes
+
 - name: Install Tailscale (Debian and Fedora)
   ansible.builtin.shell: curl -fsSL https://tailscale.com/install.sh | sh
   become_user: '{{ target_user }}'
+  when: tailscale_check.rc != 0

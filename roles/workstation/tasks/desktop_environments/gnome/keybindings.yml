@@ -51,7 +51,7 @@
     value: "{{ item.value}}"
   with_items:
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/name", value: "'planify_quick_add'" }
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/binding", value: "'<Ctrl>q'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/binding", value: "'<Primary><Alt>q'" }
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/command", value: "'flatpak run --command=io.github.alainm23.planify.quick-add io.github.alainm23.planify'" }
   become_user: '{{ target_user }}'
 
