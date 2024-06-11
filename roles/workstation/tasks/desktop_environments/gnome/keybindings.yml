@@ -69,7 +69,7 @@
   become_user: '{{ target_user }}'
 
 # Fix alt + tab behavior
-- name: gnome | keybindings | set system monitor keybinding
+- name: gnome | keybindings | Fix alt + tab behavior
   tags: gnome,keybindings
   community.general.dconf:
     key: /org/gnome/desktop/wm/keybindings/switch-windows
