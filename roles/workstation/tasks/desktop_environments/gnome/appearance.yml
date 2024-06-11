@@ -21,6 +21,28 @@
     value: "'zoom'"
   become_user: '{{ target_user }}'
 
+- name: gnome | appearance | copy icon file (Debian)
+  tags: gnome,gnome-wallpaper
+  ansible.builtin.copy:
+    src: gnome/debian_logo.png
+    dest: '/home/{{ target_user }}/.face'
+    owner: '{{ target_user }}'
+    group: '{{ target_user }}'
+    mode: 0644
+    backup: yes
+  when: ansible_distribution == "Debian"
+
+- name: gnome | appearance | copy icon file (Fedora)
+  tags: gnome,gnome-wallpaper
+  ansible.builtin.copy:
+    src: gnome/fedora_logo.png
+    dest: '/home/{{ target_user }}/.face'
+    owner: '{{ target_user }}'
+    group: '{{ target_user }}'
+    mode: 0644
+    backup: yes
+  when: ansible_distribution == "Fedora"
+
 #- name: gnome | appearance | copy lock screen background file
 #  tags: gnome,gnome-lockscreen
 #  ansible.builtin.copy:

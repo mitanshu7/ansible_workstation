@@ -4,7 +4,7 @@
 
 - name: gnome | keybindings | set terminal keybinding
   tags: gnome,keybindings
-  dconf:
+  community.general.dconf:
     key: "{{ item.key }}"
     value: "{{ item.value}}"
   with_items:
@@ -18,7 +18,7 @@
 
 - name: gnome | keybindings | set calculator keybinding
   tags: gnome,keybindings
-  dconf:
+  community.general.dconf:
     key: "{{ item.key }}"
     value: "{{ item.value}}"
   with_items:
@@ -33,7 +33,7 @@
 
 - name: gnome | keybindings | set files keybinding
   tags: gnome,keybindings
-  dconf:
+  community.general.dconf:
     key: "{{ item.key }}"
     value: "{{ item.value}}"
   with_items:
@@ -46,7 +46,7 @@
 
 - name: gnome | keybindings | set planify_quick_add keybinding
   tags: gnome,keybindings
-  dconf:
+  community.general.dconf:
     key: "{{ item.key }}"
     value: "{{ item.value}}"
   with_items:
@@ -59,13 +59,21 @@
 
 - name: gnome | keybindings | set system monitor keybinding
   tags: gnome,keybindings
-  dconf:
+  community.general.dconf:
     key: "{{ item.key }}"
     value: "{{ item.value}}"
   with_items:
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/name", value: "'system_monitor'" }
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/binding", value: "'<Primary><Shift>Escape'" }
     - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/command", value: "'gnome-system-monitor'" }
+  become_user: '{{ target_user }}'
+
+# Fix alt + tab behavior
+- name: gnome | keybindings | set system monitor keybinding
+  tags: gnome,keybindings
+  community.general.dconf:
+    key: /org/gnome/desktop/wm/keybindings/switch-windows
+    value: "['<Alt>Tab']"
   become_user: '{{ target_user }}'
 
 # All of your custom shortcuts must also be added to an array.
