@@ -60,14 +60,15 @@ Currently:
 
 ### **TODO:**
 
-- [x] Add/copy other ssh keys to vault too.
+- [x] Add/copy other ssh keys to vault too.(6a4306d6824bee871f2e95881cbcb92327139ec2)
 - [ ] Maintain a vault-free branch to enable public use.
 - [ ] Make the code more efficient for:
-    - [x] Chrome
-    - [x] miniforge
+    - [x] Chrome (6393cd1af12cb4e51e5f629666ebcb7e8486eb81)
+    - [x] miniforge (6393cd1af12cb4e51e5f629666ebcb7e8486eb81)
 - [ ] Have a list of flags for software to be installed.
 - [ ] Documentation for individual playbooks and configurations.
 - [ ] Setup a user `ansible` and configure `ansible-pull` for an up-to date system.
+- [ ] Make the setup work on a multi-user env without disrupting any other user in the os
 
 ### **Additional Information:**
 
