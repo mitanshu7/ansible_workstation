@@ -5,4 +5,4 @@
   ansible.builtin.dnf: update_cache=yes
 
 - name: reboot
-  ansible.builtin.shell: "sleep 10 && sudo reboot"
+  ansible.builtin.shell: sleep 10 && sudo reboot
