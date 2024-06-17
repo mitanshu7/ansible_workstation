@@ -22,6 +22,30 @@
   run_once: true
   become_user: '{{ target_user }}'
 
+- name: Add alias for Cloudflare Warp connect
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias wc="warp-cli connect"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+
+- name: Add alias for Cloudflare Warp disconnect
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias wd="warp-cli disconnect"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+
+- name: Add alias for Cloudflare Warp status
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: 'alias ws="warp-cli status"'
+    state: present
+  run_once: true
+  become_user: '{{ target_user }}'
+
 - name: Exporting Nano as the default EDITOR
   ansible.builtin.lineinfile:
     path: ~/.bashrc
