@@ -1,48 +1,72 @@
-# MNE
-- name: Check if Mamba environment (MNE) exists
+# EEG
+- name: Check if Mamba environment (EEG) exists
   ansible.builtin.shell: |
-    source ~/.bashrc && mamba env list | grep -qw mne
-  register: mne_env_exists
+    source ~/.bashrc && mamba env list | grep -qw eeg
+  register: eeg_env_exists
   ignore_errors: true
   become_user: '{{ target_user }}'
   args:
      executable: /bin/bash
 
-- name: Create new Mamba environment (MNE)
-  ansible.builtin.shell: source ~/.bashrc && mamba create -n mne python=3.11 -y
+- name: Create new Mamba environment (EEG)
+  ansible.builtin.shell: source ~/.bashrc && mamba create -n eeg python=3.11 -y
   become_user: '{{ target_user }}'
-  when: mne_env_exists.rc != 0
+  when: eeg_env_exists.rc != 0
   args:
      executable: /bin/bash
 
-- name: Instal Python packages (MNE)
-  ansible.builtin.shell: source ~/.bashrc && mamba install -n mne mne graph-tool igraph mne-connectivity -y
+- name: Instal Python packages (EEG)
+  ansible.builtin.shell: source ~/.bashrc && mamba install -n eeg mne igraph mne-connectivity -y
   become_user: '{{ target_user }}'
-  when: mne_env_exists.rc != 0
+  when: eeg_env_exists.rc != 0
   args:
      executable: /bin/bash
 
-# PYTORCH
-- name: Check if Mamba environment (PYTORCH) exists
+# ML
+- name: Check if Mamba environment (ML) exists
   ansible.builtin.shell: |
-    source ~/.bashrc && mamba env list | grep -qw pytorch
-  register: pytorch_env_exists
+    source ~/.bashrc && mamba env list | grep -qw ml
+  register: ml_env_exists
   ignore_errors: true
   become_user: '{{ target_user }}'
   args:
      executable: /bin/bash
 
-- name: Create new Mamba environment (PYTORCH)
-  ansible.builtin.shell: source ~/.bashrc && mamba create -n pytorch python=3.10 -y
+- name: Create new Mamba environment (ML)
+  ansible.builtin.shell: source ~/.bashrc && mamba create -n ml python=3.10 -y
   become_user: '{{ target_user }}'
-  when: pytorch_env_exists.rc != 0
+  when: ml_env_exists.rc != 0
   args:
      executable: /bin/bash
 
-- name: Instal Python packages (PYTORCH)
-  ansible.builtin.shell: source ~/.bashrc && mamba install -n pytorch pytorch torchvision torchaudio pytorch-cuda=12.1 transformers sentence-transformers jupyterlab xformers pandas matplotlib -c xformers -c pytorch -c nvidia -y
+- name: Instal Python packages (ML)
+  ansible.builtin.shell: source ~/.bashrc && mamba install -n ml pytorch torchvision torchaudio pytorch-cuda=12.1 transformers sentence-transformers jupyterlab xformers pandas matplotlib -c xformers -c pytorch -c nvidia -y
   become_user: '{{ target_user }}'
-  when: pytorch_env_exists.rc != 0
+  when: ml_env_exists.rc != 0
+  args:
+     executable: /bin/bash
+
+# ROADS
+- name: Check if Mamba environment (ROADS) exists
+  ansible.builtin.shell: |
+    source ~/.bashrc && mamba env list | grep -qw roads
+  register: roads_env_exists
+  ignore_errors: true
+  become_user: '{{ target_user }}'
+  args:
+     executable: /bin/bash
+
+- name: Create new Mamba environment (ROADS)
+  ansible.builtin.shell: source ~/.bashrc && mamba create -n roads python=3.11 -y
+  become_user: '{{ target_user }}'
+  when: roads_env_exists.rc != 0
+  args:
+     executable: /bin/bash
+
+- name: Instal Python packages (ROADS)
+  ansible.builtin.shell: source ~/.bashrc && mamba install -n roads osmnx graph-tool igraph jupyterlab pandas matplotlib -y
+  become_user: '{{ target_user }}'
+  when: roads_env_exists.rc != 0
   args:
      executable: /bin/bash
 
