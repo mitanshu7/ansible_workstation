@@ -17,7 +17,7 @@
 - name: Add alias for Visual Studio Code
   ansible.builtin.lineinfile:
     path: ~/.bashrc
-    line: 'alias vsc="code . && exit"'
+    line: 'alias vsc="code . && sleep 1 && exit"'
     state: present
   run_once: true
   become_user: '{{ target_user }}'
