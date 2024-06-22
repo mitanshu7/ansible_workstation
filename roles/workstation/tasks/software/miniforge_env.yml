@@ -15,7 +15,7 @@
   args:
      executable: /bin/bash
 
-- name: Instal Python packages (EEG)
+- name: Install Mamba Python packages (EEG)
   ansible.builtin.shell: source ~/.bashrc && mamba install -n eeg mne igraph mne-connectivity -y
   become_user: '{{ target_user }}'
   when: eeg_env_exists.rc != 0
@@ -39,8 +39,15 @@
   args:
      executable: /bin/bash
 
-- name: Instal Python packages (ML)
-  ansible.builtin.shell: source ~/.bashrc && mamba install -n ml pytorch torchvision torchaudio pytorch-cuda=12.1 transformers sentence-transformers jupyterlab xformers pandas matplotlib -c xformers -c pytorch -c nvidia -y
+- name: Install Mamba Python packages (ML)
+  ansible.builtin.shell: source ~/.bashrc && mamba install -n ml pytorch torchvision torchaudio pytorch-cuda=12.1 transformers sentence-transformers jupyterlab xformers pandas matplotlib kaggle -c xformers -c pytorch -c nvidia -y
+  become_user: '{{ target_user }}'
+  when: ml_env_exists.rc != 0
+  args:
+     executable: /bin/bash
+
+- name: Install PIP Python packages (ML)
+  ansible.builtin.shell: source ~/.bashrc && mamba activate ml && pip install --upgrade pymilvus pymupdf 
   become_user: '{{ target_user }}'
   when: ml_env_exists.rc != 0
   args:
@@ -63,7 +70,7 @@
   args:
      executable: /bin/bash
 
-- name: Instal Python packages (ROADS)
+- name: Install Mamba Python packages (ROADS)
   ansible.builtin.shell: source ~/.bashrc && mamba install -n roads osmnx graph-tool igraph jupyterlab pandas matplotlib -y
   become_user: '{{ target_user }}'
   when: roads_env_exists.rc != 0
