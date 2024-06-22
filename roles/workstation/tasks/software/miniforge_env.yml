@@ -16,7 +16,7 @@
      executable: /bin/bash
 
 - name: Install Mamba Python packages (EEG)
-  ansible.builtin.shell: source ~/.bashrc && mamba install -n eeg mne igraph mne-connectivity -y
+  ansible.builtin.shell: source ~/.bashrc && mamba install -n eeg mne python-igraph mne-connectivity -y
   become_user: '{{ target_user }}'
   when: eeg_env_exists.rc != 0
   args:
@@ -71,7 +71,7 @@
      executable: /bin/bash
 
 - name: Install Mamba Python packages (ROADS)
-  ansible.builtin.shell: source ~/.bashrc && mamba install -n roads osmnx graph-tool igraph jupyterlab pandas matplotlib -y
+  ansible.builtin.shell: source ~/.bashrc && mamba install -n roads osmnx graph-tool python-igraph jupyterlab pandas matplotlib -y
   become_user: '{{ target_user }}'
   when: roads_env_exists.rc != 0
   args:
