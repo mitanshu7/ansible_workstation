@@ -9,6 +9,7 @@
       - curl
       - wget
       - gparted
+      - parallel
     state: latest
   
 - name: Install misc packages (Debian Specific)
