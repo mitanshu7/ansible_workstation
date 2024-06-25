@@ -41,7 +41,7 @@
 - name: Add alias for Cloudflare Warp status
   ansible.builtin.lineinfile:
     path: ~/.bashrc
-    line: 'alias ws="warp-cli status"'
+    line: 'alias ws="curl --silent https://www.cloudflare.com/cdn-cgi/trace/ | grep warp | cut --bytes 6,7,8"'
     state: present
   run_once: true
   become_user: '{{ target_user }}'
