@@ -41,6 +41,7 @@
       - net.cozic.joplin_desktop
       - org.gnome.gitlab.somas.Apostrophe
       - org.gnome.Shotwell
+      - io.mpv.Mpv
     state: present
     method: user
   become_user: '{{ target_user }}'
