@@ -14,6 +14,9 @@
   # Install flatpak and all the apps needed from there.
   - import_tasks: software/flatpak.yml
 
+  # Setup mpv configuration
+  - import_tasks: software/mpv.yml
+
   # Install VS Code
   - import_tasks: software/vscode.yml
 

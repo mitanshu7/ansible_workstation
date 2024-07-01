@@ -1,0 +1,17 @@
+- name: Ensure MPV config directory exists (Debian and Fedora)
+  file:
+    path: '/home/{{ target_user }}/.config/mpv'
+    owner: '{{ target_user }}'
+    group: '{{ target_user }}'
+    state: directory
+    mode: '0755'
+  become_user: '{{ target_user }}'
+
+- name: Setup mpv configuration (Debian and Fedora)
+  ansible.builtin.copy:
+    src: configuration/mpv.conf
+    dest: '/home/{{ target_user }}/.config/mpv/mpv.conf'
+    owner: '{{ target_user }}'
+    group: '{{ target_user }}'
+    mode: '0644'
+  become_user: '{{ target_user }}'
