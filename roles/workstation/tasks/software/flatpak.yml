@@ -23,6 +23,7 @@
 - name: Install Flatpak Apps (Debian and Fedora)
   community.general.flatpak:
     name:
+      - com.github.tchx84.Flatseal
       - org.gnome.Extensions
       - com.mattjakeman.ExtensionManager
       - com.spotify.Client
