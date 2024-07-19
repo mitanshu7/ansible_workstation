@@ -1,9 +1,15 @@
+- name: Check if MiniForge is installed (Debian and Fedora)
+  ansible.builtin.command: which mamba
+  register: mamba_check
+  ignore_errors: yes
+
 - name: Download Miniforge installer (Debian and Fedora)
   ansible.builtin.get_url:
     url: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
     dest: /tmp/Miniforge3-Linux-x86_64.sh
     mode: '0755'
   register: miniforge_download
+  when: mamba_check.rc != 0
 
 - name: Run Miniforge installer (Debian and Fedora)
   ansible.builtin.shell: /tmp/Miniforge3-Linux-x86_64.sh -b -u
