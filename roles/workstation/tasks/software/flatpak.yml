@@ -35,7 +35,7 @@
       - org.remmina.Remmina
       - com.brave.Browser
       - org.mozilla.firefox
-      - io.github.alainm23.planify
+      - io.github.mrvladus.List
       - org.strawberrymusicplayer.strawberry
       - com.rafaelmardojai.Blanket
       - com.calibre_ebook.calibre
